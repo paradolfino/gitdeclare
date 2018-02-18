@@ -15,7 +15,6 @@ require 'http_require'
 require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitDeclare
-    include Threader
     @@pushes = 0
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
