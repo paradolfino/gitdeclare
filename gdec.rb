@@ -24,9 +24,7 @@ class GitDeclare
     @@time_running = 0
     @@pool = nil
 
-    def initialize
-        
-    end
+    def initialize; end
 
     def self.execute(param)
         stalker = %x{#{param}}
