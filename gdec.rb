@@ -49,7 +49,7 @@ class GitDeclare
             GitDeclare.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
-    def self.atomic(why, pool)
+    def self.atomic(pool)
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
@@ -62,7 +62,7 @@ class GitDeclare
             file.puts
         end
         GitDeclare.add_wait
-        GitDeclare.execute "git commit -m \"pool[#{pool}]: #{why}\""
+        GitDeclare.execute "git commit -m \"pool[#{pool}]\""
         
     end
 
