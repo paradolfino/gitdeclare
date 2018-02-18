@@ -3,7 +3,7 @@
     Hi there. This is GitDeclare. I made it to help do some heavy lifting with git commits.
     You're free to use and modify your own copies of the script - but I have not tested it on multiple platforms
     and don't know of the effects thereof.
-    Feel free to also send in issues to the gitreaper repo or if you modify the code to make it better, feel free
+    Feel free to also send in issues to the gitdeclare repo or if you modify the code to make it better, feel free
     to also submit a pull request - I'll check it out.
 
     -Thanks
@@ -106,7 +106,7 @@ class GitDeclare
             end
         end
         puts "Preparing to Reap on #{branch} branch."
-        reaper = Thread.new do
+        declare = Thread.new do
             
             while true
                 GitDeclare.commit_loop(thread_pool.join(''))
@@ -115,7 +115,7 @@ class GitDeclare
         end
         
         gets
-        reaper.kill
+        declare.kill
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
