@@ -14,6 +14,7 @@
 
 class GitDeclare
     @@pushes = 0
+    @@stage = 0
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
