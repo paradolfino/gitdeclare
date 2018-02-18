@@ -68,15 +68,15 @@ class GitDeclare
 
     def self.exit(exit_type, pool, branch)
         case exit_type
-        when "push"
+        when "new"
             puts "Summarize changes made:"
             summary = gets.chomp
             GitDeclare.atomic(summary, pool)
             GitDeclare.start
-        when "kill"
+        when "reset"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
-        when "reap"
+        when "push"
             puts "Summarize final changes:"
             summary = gets.chomp
             GitDeclare.atomic(summary, pool)
