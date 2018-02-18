@@ -91,7 +91,7 @@ class GitDeclare
     def self.threader(branch)
         puts "What are you working on next?"
         @@pool = gets.chomp
-        puts "Preparing to Work on #{branch} branch."
+        puts "Working on: #{@@pool} on #{branch} branch."
         declare = Thread.new do
             
             while true
