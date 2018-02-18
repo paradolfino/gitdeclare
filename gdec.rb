@@ -53,11 +53,12 @@ class GitDeclare
         end
         changes = why.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
-        
-        open('pull_me.txt', 'a') do |file|
-            file.puts "### [#{@@time}]:"
-            file.puts changes
-            file.puts
+        if @@stage == 1
+            open('pull_me.txt', 'a') do |file|
+                file.puts "### [#{@@time}]:"
+                file.puts changes
+                file.puts
+            end
         end
         GitDeclare.add_wait
         GitDeclare.execute "git commit -m \"pool[#{pool}]\""
