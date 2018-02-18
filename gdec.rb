@@ -94,7 +94,7 @@ class GitDeclare
         declare = Thread.new do
             
             while true
-                GitDeclare.commit_loop(thread_pool.join(''))
+                GitDeclare.commit_loop(@@pool)
             end
             
         end
