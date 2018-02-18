@@ -43,7 +43,7 @@ class GitDeclare
 
     def self.commit_loop(pool)
             GitDeclare.add_wait
-            GitDeclare.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            GitDeclare.execute "git commit -m \" #{@@pool} \""
     end
 
     def self.atomic(summary, pool)
