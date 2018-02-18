@@ -51,7 +51,7 @@ class GitDeclare
         open('why_commit.txt', 'a') do |file|
             file.puts "#{@@time}:pool[#{pool}]"
         end
-        changes = why.strip.split(",")
+        changes = summary.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
         if @@stage == 1
             open('pull_me.txt', 'a') do |file|
