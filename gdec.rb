@@ -89,22 +89,7 @@ class GitDeclare
     end
 
     def self.threader(branch)
-       thread_pool = []
-       thread_fork = [0,1]
-       thread_bits = []
-       thread_bits = Threader.bits
-       thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
-       thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
-       thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
-
-        6.times do
-            do_fork = thread_fork[rand(thread_fork.length)]
-            if do_fork == 0
-                thread_pool.push(rand(9))
-            else
-                thread_pool.push(thread_bits[rand(thread_bits.length)])
-            end
-        end
+       
         puts "Preparing to Reap on #{branch} branch."
         declare = Thread.new do
             
