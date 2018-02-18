@@ -1,6 +1,6 @@
 =begin
 
-    Hi there. This is GR_NET (GitDeclare Net). I made it to help do some heavy lifting with git commits.
+    Hi there. This is GitDeclare. I made it to help do some heavy lifting with git commits.
     You're free to use and modify your own copies of the script - but I have not tested it on multiple platforms
     and don't know of the effects thereof.
     Feel free to also send in issues to the gitreaper repo or if you modify the code to make it better, feel free
