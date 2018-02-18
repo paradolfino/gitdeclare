@@ -57,7 +57,7 @@ class GitDeclare
         changes.map! {|item| item = "* #{item.strip}"}
         
         open('pull_me.txt', 'a') do |file|
-            file.puts "### pool[#{pool}]:"
+            file.puts "### [#{Time.now.strftime("%H:%M - %d/%m/%Y")}]:"
             file.puts changes
             file.puts
         end
