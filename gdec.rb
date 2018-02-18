@@ -22,6 +22,7 @@ class GitDeclare
     @@color_default = "\033[0m"
     @@commits = 1
     @@time_running = 0
+    @@pool = nil
 
     def initialize
         
