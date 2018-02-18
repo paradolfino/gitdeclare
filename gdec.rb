@@ -90,7 +90,7 @@ class GitDeclare
 
     def self.threader(branch)
        
-        puts "Preparing to Reap on #{branch} branch."
+        puts "Preparing to Work on #{branch} branch."
         declare = Thread.new do
             
             while true
