@@ -56,6 +56,7 @@ class GitDeclare
         @@changes.map! {|item| item = "* #{item.strip}"}
         if @@stage == 1
             open('pull_me.txt', 'a') do |file|
+                file.puts "[#{summary}]"
                 file.puts "### [#{@@time}]:"
                 file.puts @@changes
                 file.puts
