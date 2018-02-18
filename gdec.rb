@@ -105,7 +105,7 @@ class GitDeclare
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
-        GitDeclare.exit(exit_type, thread_pool.join(''), branch)
+        GitDeclare.exit(exit_type, @@pool, branch)
         
         
     end
