@@ -49,7 +49,7 @@ class GitDeclare
             GitDeclare.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
-    def self.atomic(pool)
+    def self.atomic(summary, pool)
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]"
         end
