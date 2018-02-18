@@ -75,6 +75,7 @@ class GitDeclare
         when "push"
             puts "Summarize final changes:"
             summary = gets.chomp
+            @@stage = 1
             GitDeclare.atomic(summary, pool)
             GitDeclare.execute "git push -u origin #{branch}"
         else
