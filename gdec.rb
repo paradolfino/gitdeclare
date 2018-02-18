@@ -1,9 +1,9 @@
 =begin
 
-    Hi there. This is GR_NET (GitDeclare Net). I made it to help do some heavy lifting with git commits.
+    Hi there. This is GitDeclare. I made it to help do some heavy lifting with git commits.
     You're free to use and modify your own copies of the script - but I have not tested it on multiple platforms
     and don't know of the effects thereof.
-    Feel free to also send in issues to the gitreaper repo or if you modify the code to make it better, feel free
+    Feel free to also send in issues to the gitdeclare repo or if you modify the code to make it better, feel free
     to also submit a pull request - I'll check it out.
 
     -Thanks
@@ -11,27 +11,25 @@
 
 =end
 
-require 'http_require'
-require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitDeclare
-    include Threader
     @@pushes = 0
+    @@stage = 0
+    @@changes = []
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
     @@commits = 1
-    @@time_running = 0
+    @@time = Time.now.strftime("%H:%M - %d/%m/%Y")
+    @@pool = nil
 
-    def initialize
-        
-    end
+    def initialize; end
 
     def self.execute(param)
         stalker = %x{#{param}}
         @@time_running += 1
         if stalker.include? "nothing to commit" 
-            puts @@color_red + "Stalking for #{@@time_running} secs" + @@color_default
+            
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
             puts "#{@@commits} commits to pool so far"
@@ -47,41 +45,41 @@ class GitDeclare
 
     def self.commit_loop(pool)
             GitDeclare.add_wait
-            GitDeclare.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            GitDeclare.execute "git commit -m \" #{pool} \""
     end
 
-    def self.atomic(why, pool)
+    def self.atomic(summary, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
+            file.puts "#{@@time}:pool[#{pool}]"
         end
-        changes = why.strip.split(",")
-        changes.map! {|item| item = "* #{item.strip}"}
         
-        open('pull_me.txt', 'a') do |file|
-            file.puts "### pool[#{pool}]:"
-            file.puts changes
-            file.puts
+        @@changes.map! {|item| item = "* #{item.strip}"}
+        if @@stage == 1
+            open('pull_me.txt', 'a') do |file|
+                file.puts "[#{summary}]"
+                file.puts "### [#{@@time}]:"
+                file.puts @@changes
+                file.puts
+            end
         end
         GitDeclare.add_wait
-        GitDeclare.execute "git commit -m \"pool[#{pool}]: #{why}\""
+        GitDeclare.execute "git commit -m \"pool[#{pool}]\""
         
     end
 
     def self.exit(exit_type, pool, branch)
         case exit_type
-        when "push"
-            puts "Summarize changes made:"
-            summary = gets.chomp
-            GitDeclare.atomic(summary, pool)
+        when "new"
+            GitDeclare.atomic(nil, pool)
             GitDeclare.start
-        when "kill"
+        when "reset"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
-        when "reap"
+        when "push"
             puts "Summarize final changes:"
             summary = gets.chomp
+            @@stage = 1
             GitDeclare.atomic(summary, pool)
-            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitDeclare.execute "git push -u origin #{branch}"
         else
             puts "Returning to loop"
@@ -90,37 +88,23 @@ class GitDeclare
     end
 
     def self.threader(branch)
-       thread_pool = []
-       thread_fork = [0,1]
-       thread_bits = []
-       thread_bits = Threader.bits
-       thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
-       thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
-       thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
-
-        6.times do
-            do_fork = thread_fork[rand(thread_fork.length)]
-            if do_fork == 0
-                thread_pool.push(rand(9))
-            else
-                thread_pool.push(thread_bits[rand(thread_bits.length)])
-            end
-        end
-        puts "Preparing to Reap on #{branch} branch."
-        reaper = Thread.new do
+        puts "What are you working on next?"
+        @@pool = gets.chomp
+        puts "Working on: #{@@pool} on #{branch} branch."
+        declare = Thread.new do
             
             while true
-                GitDeclare.commit_loop(thread_pool.join(''))
+                GitDeclare.commit_loop(@@pool)
             end
             
         end
         
         gets
-        reaper.kill
+        declare.kill
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
-        GitDeclare.exit(exit_type, thread_pool.join(''), branch)
+        GitDeclare.exit(exit_type, @@pool, branch)
         
         
     end
