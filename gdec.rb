@@ -51,7 +51,7 @@ class GitDeclare
 
     def self.atomic(pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
+            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]"
         end
         changes = why.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
