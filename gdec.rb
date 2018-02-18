@@ -75,7 +75,6 @@ class GitDeclare
             puts "Summarize final changes:"
             summary = gets.chomp
             GitDeclare.atomic(summary, pool)
-            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitDeclare.execute "git push -u origin #{branch}"
         else
             puts "Returning to loop"
