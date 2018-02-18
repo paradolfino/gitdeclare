@@ -11,8 +11,6 @@
 
 =end
 
-require 'http_require'
-require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitDeclare
     @@pushes = 0
