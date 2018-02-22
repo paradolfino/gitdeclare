@@ -1,1 +1,10 @@
 18/02/2018 16:30:pool[pretty-living-mountains-n47o8i]: begin conversion of gitreaper to gitdeclare
+21/02/2018 20:55:pool[lovely-flying-cows-7y414k]: work on gdec + testing
+20:57 - 21/02/2018:pool[testing]
+21:00 - 21/02/2018:pool[testing]
+21:00 - 21/02/2018:pool[testing again]
+21:03 - 21/02/2018:pool[testing]
+21:03 - 21/02/2018:pool[test lettuce]
+21:03 - 21/02/2018:pool[test lettuce again]
+21:06 - 21/02/2018:pool[create readme]
+21:06 - 21/02/2018:pool[work on readme]

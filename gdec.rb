@@ -1,15 +1,4 @@
-=begin
 
-    Hi there. This is GitDeclare. I made it to help do some heavy lifting with git commits.
-    You're free to use and modify your own copies of the script - but I have not tested it on multiple platforms
-    and don't know of the effects thereof.
-    Feel free to also send in issues to the gitdeclare repo or if you modify the code to make it better, feel free
-    to also submit a pull request - I'll check it out.
-
-    -Thanks
-    Viktharien Volander
-
-=end
 
 
 class GitDeclare
@@ -27,7 +16,7 @@ class GitDeclare
 
     def self.execute(param)
         stalker = %x{#{param}}
-        @@time_running += 1
+        
         if stalker.include? "nothing to commit" 
             
         elsif stalker.include? "insert"
@@ -53,8 +42,9 @@ class GitDeclare
             file.puts "#{@@time}:pool[#{pool}]"
         end
         
-        @@changes.map! {|item| item = "* #{item.strip}"}
+        @@changes << pool
         if @@stage == 1
+            @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
                 file.puts "### [#{@@time}]:"
@@ -63,7 +53,7 @@ class GitDeclare
             end
         end
         GitDeclare.add_wait
-        GitDeclare.execute "git commit -m \"pool[#{pool}]\""
+        GitDeclare.execute "git commit -m \"#{pool}\""
         
     end
 
@@ -88,9 +78,10 @@ class GitDeclare
     end
 
     def self.threader(branch)
-        puts "What are you working on next?"
+        puts "What are you working on with the #{branch} branch?"
         @@pool = gets.chomp
-        puts "Working on: #{@@pool} on #{branch} branch."
+        puts "You're working on: #{@@pool} on #{branch} branch. GitDeclare is now watching for changes."
+        puts "Press [Enter] to make a commit and start a new declaration."
         declare = Thread.new do
             
             while true
@@ -102,7 +93,7 @@ class GitDeclare
         gets
         declare.kill
         puts "How do you wish to exit?"
-        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
+        puts "'new': logs the commit pool and starts a new declaration\n'reset': wipes commits and exits program\n'push': pushes all changes"
         exit_type = gets.chomp
         GitDeclare.exit(exit_type, @@pool, branch)
         

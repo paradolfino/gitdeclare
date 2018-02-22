@@ -1,4 +1,6 @@
 
-### pool[pretty-living-mountains-n47o8i]:
-* begin conversion of gitreaper to gitdeclare
+[added readme]
+### [21:06 - 21/02/2018]:
+* create readme
+* work on readme
 
