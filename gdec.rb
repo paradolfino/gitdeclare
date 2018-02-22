@@ -42,8 +42,9 @@ class GitDeclare
             file.puts "#{@@time}:pool[#{pool}]"
         end
         
-        @@changes.map! {|item| item = "* #{item.strip}"}
+        @@changes << pool
         if @@stage == 1
+            @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
                 file.puts "### [#{@@time}]:"
