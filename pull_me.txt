@@ -1,4 +1,1 @@
 
-### pool[lovely-flying-cows-7y414k]:
-* work on gdec + testing
-

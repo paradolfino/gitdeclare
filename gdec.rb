@@ -16,7 +16,7 @@ class GitDeclare
 
     def self.execute(param)
         stalker = %x{#{param}}
-        @@time_running += 1
+        
         if stalker.include? "nothing to commit" 
             
         elsif stalker.include? "insert"
@@ -77,10 +77,10 @@ class GitDeclare
     end
 
     def self.threader(branch)
-        puts "What are you working on next?"
+        puts "What are you working on with the #{branch} branch?"
         @@pool = gets.chomp
-        puts "Working on: #{@@pool} on #{branch} branch."
-        puts "Press [Enter] to make a commit."
+        puts "You're working on: #{@@pool} on #{branch} branch. GitDeclare is now watching for changes."
+        puts "Press [Enter] to make a commit and start a new declaration."
         declare = Thread.new do
             
             while true
