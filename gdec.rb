@@ -80,6 +80,7 @@ class GitDeclare
         puts "What are you working on next?"
         @@pool = gets.chomp
         puts "Working on: #{@@pool} on #{branch} branch."
+        puts "Press [Enter] to make a commit."
         declare = Thread.new do
             
             while true
@@ -91,7 +92,7 @@ class GitDeclare
         gets
         declare.kill
         puts "How do you wish to exit?"
-        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
+        puts "'new': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
         GitDeclare.exit(exit_type, @@pool, branch)
         
