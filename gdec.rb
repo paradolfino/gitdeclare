@@ -92,7 +92,7 @@ class GitDeclare
         gets
         declare.kill
         puts "How do you wish to exit?"
-        puts "'new': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
+        puts "'new': logs the commit pool and starts a new declaration\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
         GitDeclare.exit(exit_type, @@pool, branch)
         
