@@ -1,0 +1,3 @@
+## GitDeclare
+
+Declarative Git Processing.
