@@ -8,3 +8,4 @@
 21:03 - 21/02/2018:pool[test lettuce again]
 21:06 - 21/02/2018:pool[create readme]
 21:06 - 21/02/2018:pool[work on readme]
+22:29 - 23/02/2018:pool[fix timestamping]
