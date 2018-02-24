@@ -85,8 +85,8 @@ class GitDeclare
     def self.threader(branch)
         puts "What are you working on with the #{branch} branch?"
         @@pool = gets.chomp
-        puts "You're working on: \"#{@@pool}\" on #{branch} branch. GitDeclare is now watching for changes."
-        puts "Press [Enter] to make a commit and start a new declaration."
+        puts "You're now working on: \"#{@@pool}\" on #{branch} branch. GitDeclare is watching for changes."
+        puts "When you're done with this change, press [Enter] to make a commit and start a new declaration."
         declare = Thread.new do
             
             while true
