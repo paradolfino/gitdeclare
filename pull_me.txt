@@ -1,6 +1,1 @@
 
-[added readme]
-### [21:06 - 21/02/2018]:
-* create readme
-* work on readme
-
