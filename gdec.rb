@@ -108,7 +108,7 @@ class GitDeclare
     def self.start
 
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
-        puts "Branch to push?"
+        puts "What branch are you working on?"
         branch = gets.chomp
         GitDeclare.threader(branch)
     end
