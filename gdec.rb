@@ -26,7 +26,7 @@ class GitDeclare
             
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
-            puts "#{@@commits} commits to pool so far"
+            puts "#{@@commits} changes saved"
             @@commits += 1
         end
     end
