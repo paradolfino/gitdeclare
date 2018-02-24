@@ -44,7 +44,7 @@ class GitDeclare
 
     def self.atomic(summary, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{@@time}:pool[#{pool}]"
+            file.puts "#{@@time} - #{current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
