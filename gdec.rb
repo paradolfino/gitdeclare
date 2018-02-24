@@ -9,10 +9,15 @@ class GitDeclare
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
     @@commits = 1
-    @@time = Time.now.strftime("%H:%M - %d/%m/%Y")
+    @@time = Time.now.strftime("%H:%M")
+    @@date = Time.now.strftime("%d/%m/%Y")
     @@pool = nil
 
     def initialize; end
+
+    def current_time
+        Time.now.strftime("%H:%M")
+    end
 
     def self.execute(param)
         stalker = %x{#{param}}
@@ -21,7 +26,7 @@ class GitDeclare
             
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
-            puts "#{@@commits} commits to pool so far"
+            puts "#{@@commits} changes saved"
             @@commits += 1
         end
     end
@@ -39,7 +44,7 @@ class GitDeclare
 
     def self.atomic(summary, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{@@time}:pool[#{pool}]"
+            file.puts "#{@@time} - #{current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
@@ -47,7 +52,7 @@ class GitDeclare
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
-                file.puts "### [#{@@time}]:"
+                file.puts "### #{@@date}[#{@@time} - #{current_time}]:"
                 file.puts @@changes
                 file.puts
             end
@@ -80,8 +85,8 @@ class GitDeclare
     def self.threader(branch)
         puts "What are you working on with the #{branch} branch?"
         @@pool = gets.chomp
-        puts "You're working on: #{@@pool} on #{branch} branch. GitDeclare is now watching for changes."
-        puts "Press [Enter] to make a commit and start a new declaration."
+        puts "You're now working on: \"#{@@pool}\" on #{branch} branch. #{@@color_red}GitDeclare is watching for changes#{@@color_default}."
+        puts "When you're done with this change, press [Enter] to make a commit and start a new declaration."
         declare = Thread.new do
             
             while true
@@ -103,7 +108,7 @@ class GitDeclare
     def self.start
 
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
-        puts "Branch to push?"
+        puts "What branch are you working on?"
         branch = gets.chomp
         GitDeclare.threader(branch)
     end
