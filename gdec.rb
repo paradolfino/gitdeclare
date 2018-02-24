@@ -15,6 +15,10 @@ class GitDeclare
 
     def initialize; end
 
+    def current_time
+        Time.now.strftime("%H:%M")
+    end
+
     def self.execute(param)
         stalker = %x{#{param}}
         
