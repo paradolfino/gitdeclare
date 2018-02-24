@@ -9,7 +9,7 @@ class GitDeclare
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
     @@commits = 1
-    @@time = Time.now.strftime("%H:%M - %d/%m/%Y")
+    @@time = Time.now.strftime("%H:%M")
     @@pool = nil
 
     def initialize; end
