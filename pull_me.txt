@@ -1,6 +1,5 @@
 
-[work on some corrections to language used and also timestamps]
-### [22:29 - 23/02/2018]:
-* fix timestamping
-* change flow
+[ss]
+### 23/02/2018[23:02 - 23:02]:
+* testing again
 

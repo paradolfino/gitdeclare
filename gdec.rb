@@ -15,7 +15,7 @@ class GitDeclare
 
     def initialize; end
 
-    def current_time
+    def self.current_time
         Time.now.strftime("%H:%M")
     end
 
@@ -44,7 +44,7 @@ class GitDeclare
 
     def self.atomic(summary, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{@@time} - #{current_time}:pool[#{pool}]"
+            file.puts "#{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
@@ -52,7 +52,7 @@ class GitDeclare
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
-                file.puts "### #{@@date}[#{@@time} - #{current_time}]:"
+                file.puts "### #{@@date}[#{@@time} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
             end
