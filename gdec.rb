@@ -122,7 +122,7 @@ class GitDeclare
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         if @@branch == nil then puts "What branch are you working on?"; @@branch = gets.chomp end
         
-        GitDeclare.threader(branch)
+        GitDeclare.threader(@@branch)
     end
 
     
