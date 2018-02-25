@@ -9,7 +9,8 @@ class GitDeclare
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
     @@commits = 1
-    @@time = Time.now.strftime("%H:%M")
+    @@starttime = Time.now.strftime("%H:%M")
+    @@time = nil
     @@date = Time.now.strftime("%d/%m/%Y")
     @@pool = nil
 
@@ -43,8 +44,11 @@ class GitDeclare
     end
 
     def self.atomic(summary, pool)
-        open('why_commit.txt', 'a') do |file|
-            file.puts "#{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
+        open('changelog.txt', 'a') do |file|
+            file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
+        end
+        open('readme.md', 'a') do |file|
+            file.puts "#### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
@@ -52,7 +56,7 @@ class GitDeclare
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
-                file.puts "### #{@@date}[#{@@time} - #{GitDeclare.current_time}]:"
+                file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
             end
@@ -106,7 +110,7 @@ class GitDeclare
     end
 
     def self.start
-
+        @@time = GitDeclare.current_time
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         puts "What branch are you working on?"
         branch = gets.chomp
