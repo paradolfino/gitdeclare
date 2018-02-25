@@ -1,7 +1,1 @@
 
-[change from using why_commit to changelog for record keeping, fix timestamps, append changelog to readme.md]
-### 24/02/2018[18:48 - 18:52]:
-* change why_commit to changelog
-* fix date timestamp issue for changelog
-* auto update readme to show changelog
-
