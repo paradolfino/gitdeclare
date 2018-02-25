@@ -56,7 +56,7 @@ class GitDeclare
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
-                file.puts "### #{@@date}[#{@@time} - #{GitDeclare.current_time}]:"
+                file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
             end
