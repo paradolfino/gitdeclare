@@ -1,1 +1,6 @@
 
+[fix timestamps]
+### 24/02/2018[18:53 - 18:57]:
+* fix timestamp for showing the time worked for each commit
+* testing
+
