@@ -1,7 +1,1 @@
 
-[work on formatting for readme output and allow option of switching branch after each commit]
-### 25/02/2018[09:32 - 10:12]:
-* change formatting of markdown generated for readme
-* work on new option to switch branch
-* testing
-
