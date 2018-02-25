@@ -14,3 +14,4 @@ Changelog:
 #### 25/02/2018: 09:32 - 09:51:pool[change formatting of markdown generated for readme]
 #### 25/02/2018: 09:51 - 10:12:pool[work on new option to switch branch]
 #### 25/02/2018: 10:12 - 10:12:pool[testing]
+##### 25/02/2018: 10:16 - 10:16:pool[testing switch feature]
