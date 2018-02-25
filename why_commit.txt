@@ -14,3 +14,4 @@
 23:02 - 23:02:pool[testing again]
 18:48 - 18:49:pool[change why_commit to changelog]
 18:48 - 18:50:pool[fix date timestamp issue for changelog]
+18:48 - 18:52:pool[auto update readme to show changelog]
