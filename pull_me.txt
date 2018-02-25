@@ -1,7 +1,8 @@
 
-[work on formatting for readme output and allow option of switching branch after each commit]
-### 25/02/2018[09:32 - 10:12]:
-* change formatting of markdown generated for readme
-* work on new option to switch branch
-* testing
+[testing switching to other branches on exit, fix formatting of exit options]
+### 25/02/2018[10:16 - 10:19]:
+* testing switch feature
+* testing switch
+* finalize testing on switch feature
+* change formatting of exit options
 
