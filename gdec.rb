@@ -13,6 +13,7 @@ class GitDeclare
     @@time = nil
     @@date = Time.now.strftime("%d/%m/%Y")
     @@pool = nil
+    @@branch = nil
 
     def initialize; end
 
