@@ -49,7 +49,7 @@ class GitDeclare
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         open('readme.md', 'a') do |file|
-            file.puts "##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
+            file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool

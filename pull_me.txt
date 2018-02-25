@@ -1,8 +1,5 @@
 
-[testing switching to other branches on exit, fix formatting of exit options]
-### 25/02/2018[10:16 - 10:19]:
-* testing switch feature
-* testing switch
-* finalize testing on switch feature
-* change formatting of exit options
+[test formatting]
+### 25/02/2018[10:25 - 10:25]:
+* test
 
