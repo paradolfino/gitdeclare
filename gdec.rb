@@ -83,6 +83,7 @@ class GitDeclare
             GitDeclare.execute "git push -u origin #{branch}"
         when "switch"
             GitDeclare.atomic(nil, pool)
+            puts "What branch are you working on?"; @@branch = gets.chomp
             GitDeclare.start
         else
             puts "Returning to loop"
