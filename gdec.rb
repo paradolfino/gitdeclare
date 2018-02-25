@@ -10,8 +10,8 @@ class GitDeclare
     @@color_default = "\033[0m"
     @@commits = 1
     @@starttime = Time.now.strftime("%H:%M")
-    @@time = nil
     @@date = Time.now.strftime("%d/%m/%Y")
+    @@time = nil
     @@pool = nil
     @@branch = nil
 
@@ -81,6 +81,9 @@ class GitDeclare
             @@stage = 1
             GitDeclare.atomic(summary, pool)
             GitDeclare.execute "git push -u origin #{branch}"
+        when "switch"
+            GitDeclare.atomic(nil, pool)
+            GitDeclare.start
         else
             puts "Returning to loop"
             GitDeclare.threader(branch)
