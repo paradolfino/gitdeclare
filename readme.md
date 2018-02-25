@@ -12,3 +12,4 @@ Changelog:
 #### 24/02/2018: 19:00 - 19:01:pool[testing for long periods of time and multiple commits]
 #### 24/02/2018: 19:01 - 19:02:pool[still testing]
 #### 25/02/2018: 09:32 - 09:51:pool[change formatting of markdown generated for readme]
+#### 25/02/2018: 09:51 - 10:12:pool[work on new option to switch branch]
