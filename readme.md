@@ -18,3 +18,4 @@ Changelog:
 ##### 25/02/2018: 10:16 - 10:16:pool[testing switch]
 ##### 25/02/2018: 10:16 - 10:17:pool[finalize testing on switch feature]
 ##### 25/02/2018: 10:17 - 10:19:pool[change formatting of exit options]
+##### 25/02/2018: 10:25 - 10:25:pool[test]
