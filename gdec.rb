@@ -10,9 +10,10 @@ class GitDeclare
     @@color_default = "\033[0m"
     @@commits = 1
     @@starttime = Time.now.strftime("%H:%M")
-    @@time = nil
     @@date = Time.now.strftime("%d/%m/%Y")
+    @@time = nil
     @@pool = nil
+    @@branch = nil
 
     def initialize; end
 
@@ -48,7 +49,7 @@ class GitDeclare
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         open('readme.md', 'a') do |file|
-            file.puts "#### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
+            file.puts "##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
@@ -80,6 +81,10 @@ class GitDeclare
             @@stage = 1
             GitDeclare.atomic(summary, pool)
             GitDeclare.execute "git push -u origin #{branch}"
+        when "switch"
+            GitDeclare.atomic(nil, pool)
+            puts "What branch are you working on?"; @@branch = gets.chomp
+            GitDeclare.start
         else
             puts "Returning to loop"
             GitDeclare.threader(branch)
@@ -102,7 +107,11 @@ class GitDeclare
         gets
         declare.kill
         puts "How do you wish to exit?"
-        puts "'new': logs the commit pool and starts a new declaration\n'reset': wipes commits and exits program\n'push': pushes all changes"
+        puts "
+        'new': logs the commit pool and starts a new declaration\n
+        'reset': wipes commits and exits program\n
+        'push': pushes all changes\n
+        'switch': logs commit, starts new declare, and switches branch"
         exit_type = gets.chomp
         GitDeclare.exit(exit_type, @@pool, branch)
         
@@ -112,9 +121,9 @@ class GitDeclare
     def self.start
         @@time = GitDeclare.current_time
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
-        puts "What branch are you working on?"
-        branch = gets.chomp
-        GitDeclare.threader(branch)
+        if @@branch == nil then puts "What branch are you working on?"; @@branch = gets.chomp end
+        
+        GitDeclare.threader(@@branch)
     end
 
     
