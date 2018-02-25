@@ -44,7 +44,7 @@ class GitDeclare
 
     def self.atomic(summary, pool)
         open('changelog.txt', 'a') do |file|
-            file.puts "#{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
+            file.puts "#### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
