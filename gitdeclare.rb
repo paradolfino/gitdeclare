@@ -45,10 +45,10 @@ class GitDeclare
     end
 
     def self.atomic(summary, pool)
-        open('changelog.txt', 'a') do |file|
+        open("#{Dir.pwd}/changelog.txt", 'a') do |file|
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
-        open('readme.md', 'a') do |file|
+        open("#{Dir.pwd}/readme.md", 'a') do |file|
             file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
