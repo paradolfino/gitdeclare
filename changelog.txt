@@ -12,3 +12,4 @@
 25/02/2018: 10:16 - 10:17:pool[finalize testing on switch feature]
 25/02/2018: 10:17 - 10:19:pool[change formatting of exit options]
 25/02/2018: 10:25 - 10:25:pool[test]
+31/03/2018: 18:30 - 18:32:pool[change readme and changelog output from file directory to current working directory]
