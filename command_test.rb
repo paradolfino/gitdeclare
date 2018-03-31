@@ -1,1 +1,1 @@
-puts %x(git branch).split(" ").shift
+arr = %x(git branch).split(" ")
