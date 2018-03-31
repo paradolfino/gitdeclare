@@ -115,6 +115,7 @@ class GitDeclare
         x = %x(git branch).split(" ")
         x.shift
         @@branch = x.first
+        puts "On #{@@branch} branch"
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
         
