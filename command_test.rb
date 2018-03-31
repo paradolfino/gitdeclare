@@ -1,3 +1,3 @@
-arr = %x(git branch).split("* ").strip
+arr = %x(git branch).split("* ")
 arr.shift
-puts arr.first
+puts arr.strip
