@@ -1,1 +1,1 @@
-puts %x(git branch)
+%x(git branch).to_a
