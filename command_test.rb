@@ -1,1 +1,1 @@
-puts %x(git branch).to_a
+puts %x(git branch).split(" ")
