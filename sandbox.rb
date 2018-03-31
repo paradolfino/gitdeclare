@@ -1,5 +1,5 @@
 
-##For making changes to GitDeclare without pushing to GitHub
+
 
 class GitDeclare
     @@pushes = 0
@@ -37,17 +37,17 @@ class GitDeclare
     end
 
     def self.atomic(summary, pool)
-        open('changelog.txt', 'a') do |file|
+        open("#{Dir.pwd}/changelog.txt", 'a') do |file|
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
-        open('readme.md', 'a') do |file|
+        open("#{Dir.pwd}/readme.md", 'a') do |file|
             file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
         
         @@changes << pool
         if @@stage == 1
             @@changes.map! {|item| item = "* #{item.strip}"}
-            open("#{Dir.pwd}/me.txt", 'a') do |file|
+            open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
                 file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes

@@ -1,6 +1,1 @@
 
-[gitdeclare is now able to be executed anywhere when called with 'gdec' from shell]
-### 31/03/2018[18:30 - 18:37]:
-* change readme and changelog output from file directory to current working directory
-* add ability to execute remotely
-
