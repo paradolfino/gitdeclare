@@ -1,1 +1,1 @@
-puts %x(git branch).split(" ").pop
+puts %x(git branch).split(" ").shift
