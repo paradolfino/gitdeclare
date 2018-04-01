@@ -23,3 +23,5 @@ Changelog:
 ##### 31/03/2018: 18:30 - 18:32:pool[change readme and changelog output from file directory to current working directory]
 
 ##### 31/03/2018: 18:32 - 18:37:pool[add ability to execute remotely]
+
+##### 31/03/2018: 18:49 - 19:13:pool[testing]
