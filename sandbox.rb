@@ -113,7 +113,6 @@ class GitDeclare
     def self.start
         @@time = GitDeclare.current_time
         x = %x(git branch | grep \*)
-        x.shift
         @@branch = x.first
         puts "On #{@@branch} branch"
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
