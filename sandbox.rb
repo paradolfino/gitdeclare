@@ -112,7 +112,7 @@ class GitDeclare
 
     def self.start
         @@time = GitDeclare.current_time
-        x = %x(git branch).split(" ")
+        x = %x(git branch | grep \*)
         x.shift
         @@branch = x.first
         puts "On #{@@branch} branch"
