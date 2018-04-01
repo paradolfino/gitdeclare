@@ -1,2 +1,2 @@
-arr = %x(git branch | grep \*)
+arr = %x(git branch)
 puts arr
