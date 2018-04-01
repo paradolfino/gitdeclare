@@ -1,2 +1,2 @@
-arr = %x(git branch)
-puts arr.grep("*")
+arr = %x(git branch).split
+puts arr.grep()
