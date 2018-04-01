@@ -1,2 +1,2 @@
-arr = %x(git branch).split(" ")
+arr = %x(git branch | grep *)
 puts arr
