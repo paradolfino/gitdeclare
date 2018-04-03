@@ -14,6 +14,7 @@ class GitDeclare
     @@time = nil
     @@pool = nil
     @@branch = nil
+    @@declare = nil
 
     def initialize; end
 
