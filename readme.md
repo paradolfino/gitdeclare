@@ -27,3 +27,5 @@ Changelog:
 ##### 31/03/2018: 18:49 - 19:13:pool[testing]
 
 ##### 02/04/2018: 19:14 - 19:34:pool[begin creation of gitdeclare http]
+
+##### 02/04/2018: 19:34 - 19:35:pool[small change to start method to show current branch name and skip asking what branch is being worked on]
