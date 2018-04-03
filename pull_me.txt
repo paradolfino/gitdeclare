@@ -1,1 +1,7 @@
 
+[begin testing httparty post to test api with GitDeclare sandbox]
+### 02/04/2018[19:14 - 20:00]:
+* begin creation of gitdeclare http
+* small change to start method to show current branch name and skip asking what branch is being worked on
+* testing httparty pushing with sandbox
+
