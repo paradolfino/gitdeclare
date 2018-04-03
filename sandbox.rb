@@ -116,12 +116,10 @@ class GitDeclare
         x = %x(git rev-parse --abbrev-ref HEAD)
         @@branch = x.strip
         puts "On #{@@branch} branch"
-        @@pushes > 0 ?  :
         if @@pushes > 0
             @@pushes += 1
-            
         else
-            open('pull_me.txt', 'w') {|f| f.puts ""} 
+            open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
         end
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
