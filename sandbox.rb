@@ -124,8 +124,8 @@ class GitDeclare
             @@pushes += 1
             res = GitDeclare.post("http://localhost:3000/declarations", body: {content: "New Declaration"})
             body = JSON.parse(res.body)
-            id = body["id"]
-            puts id
+            @@declare = body["id"]
+            
         end
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
         
