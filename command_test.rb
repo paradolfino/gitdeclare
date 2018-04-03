@@ -1,5 +1,5 @@
 # Use the class methods to get down to business quickly
 require 'httparty'
-response = HTTParty.get('http://localhost:3000/declarations')
+response = HTTParty.get('http://localhost:3000/declarations.json')
 
 puts response.body, response.code, response.message, response.headers.inspect
