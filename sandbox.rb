@@ -2,6 +2,7 @@
 require 'httparty'
 
 class GitDeclare
+    include HTTParty
     @@pushes = 0
     @@stage = 0
     @@changes = []
@@ -121,6 +122,7 @@ class GitDeclare
         else
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
+            
         end
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
         
