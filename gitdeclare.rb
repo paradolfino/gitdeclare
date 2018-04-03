@@ -120,11 +120,9 @@ class GitDeclare
 
     def self.start
         @@time = GitDeclare.current_time
-        x = %x(git branch).split(" ")
-        x.shift
-        @@branch = x.first
+
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
-        if @@branch != "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
+        if @@branch == nil then puts "What branch are you working on?"; @@branch = gets.chomp end
         
         GitDeclare.threader(@@branch)
     end
