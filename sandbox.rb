@@ -16,6 +16,7 @@ class GitDeclare
     @@pool = nil
     @@branch = nil
     @@declare = nil
+    @@uri = "http://localhost:3000/declarations"
 
     def initialize; end
 
