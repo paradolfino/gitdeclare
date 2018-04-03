@@ -122,7 +122,7 @@ class GitDeclare
         else
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
-            
+            GitDeclare.post("http://localhost:3000/declarations")
         end
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
         
