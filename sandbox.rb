@@ -123,7 +123,7 @@ class GitDeclare
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
             res = GitDeclare.post("http://localhost:3000/declarations", body: {content: "New Declaration"})
-            body = JSON.parse(res)
+            body = JSON.parse(res.body)
             id = body["id"]
             puts id
         end
