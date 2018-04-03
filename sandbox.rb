@@ -113,7 +113,7 @@ class GitDeclare
     def self.start
         @@time = GitDeclare.current_time
         x = %x(git rev-parse --abbrev-ref HEAD)
-        @@branch = x
+        @@branch = x.strig
         puts "On #{@@branch} branch"
         @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
