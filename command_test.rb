@@ -1,3 +1,3 @@
-test = "git branch | grep *"
+test = "git branch"
 x = %x(#{test})
 puts x
