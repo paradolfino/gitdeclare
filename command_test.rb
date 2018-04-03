@@ -2,4 +2,4 @@
 require 'httparty'
 response = HTTParty.get('http://localhost:3000/declarations.json')
 
-puts response.body, response.code, response.message, response.headers.inspect
+puts response.body
