@@ -1,5 +1,5 @@
 
-
+require 'httparty'
 
 class GitDeclare
     @@pushes = 0
