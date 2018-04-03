@@ -123,7 +123,7 @@ class GitDeclare
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
             new = GitDeclare.post("http://localhost:3000/declarations", body: {content: "New Declaration"})
-            puts new.body
+            puts new.body.id
         end
         if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
         
