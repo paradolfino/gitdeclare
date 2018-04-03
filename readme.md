@@ -25,3 +25,5 @@ Changelog:
 ##### 31/03/2018: 18:32 - 18:37:pool[add ability to execute remotely]
 
 ##### 31/03/2018: 18:49 - 19:13:pool[testing]
+
+##### 02/04/2018: 19:14 - 19:34:pool[begin creation of gitdeclare http]
