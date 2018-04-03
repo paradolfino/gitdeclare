@@ -47,7 +47,7 @@ class GitDeclare
             file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
 
-        GitDeclare.post("#{@@uri}/#{@@declare}, body: {content: "New Declaration"})
+        GitDeclare.post("#{@@uri}/#{@@declare}", body: {content: "New Declaration"})
         
         @@changes << pool
         if @@stage == 1
