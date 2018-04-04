@@ -51,3 +51,5 @@ Changelog:
 ##### 03/04/2018: 19:22 - 19:48:pool[finish testing sandbox posting to test api]
 
 ##### 03/04/2018: 19:48 - 19:52:pool[begin migration of sandbox changes to gdec_http]
+
+##### 03/04/2018: 19:52 - 19:55:pool[migrate fix to start method to gitdeclare.rb and gdec cli]
