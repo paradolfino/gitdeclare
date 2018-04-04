@@ -39,3 +39,19 @@ Changelog:
 ##### 02/04/2018: 19:58 - 19:59:pool[another test]
 
 ##### 02/04/2018: 19:35 - 20:00:pool[testing httparty pushing with sandbox]
+
+##### 03/04/2018: 19:36 - 19:36:pool[testing]
+
+##### 03/04/2018: 19:37 - 19:37:pool[testing 2]
+
+##### 03/04/2018: 19:39 - 19:40:pool[testing again]
+
+##### 03/04/2018: 19:40 - 19:41:pool[another test]
+
+##### 03/04/2018: 19:22 - 19:48:pool[finish testing sandbox posting to test api]
+
+##### 03/04/2018: 19:48 - 19:52:pool[begin migration of sandbox changes to gdec_http]
+
+##### 03/04/2018: 19:52 - 19:55:pool[migrate fix to start method to gitdeclare.rb and gdec cli]
+
+##### 03/04/2018: 19:55 - 19:59:pool[create httpdec cli]

@@ -1,7 +1,13 @@
 
-[begin testing httparty post to test api with GitDeclare sandbox]
-### 02/04/2018[19:14 - 20:00]:
-* begin creation of gitdeclare http
-* small change to start method to show current branch name and skip asking what branch is being worked on
-* testing httparty pushing with sandbox
+[final test]
+### 03/04/2018[19:39 - 19:41]:
+* testing again
+* another test
+
+[finish testing sandbox post to test api, migrate sandbox code to gitdeclare, gdec, gdec_http, create httpdec]
+### 03/04/2018[19:22 - 19:59]:
+* finish testing sandbox posting to test api
+* begin migration of sandbox changes to gdec_http
+* migrate fix to start method to gitdeclare.rb and gdec cli
+* create httpdec cli
 
