@@ -54,6 +54,7 @@ class GitDeclare
         GitDeclare.post("#{@@uri}/#{@@declare}/entries", body: {content: pool})
         @@changes << pool
         if @@stage == 1
+            GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary})
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
