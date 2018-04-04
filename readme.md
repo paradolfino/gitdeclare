@@ -47,3 +47,5 @@ Changelog:
 ##### 03/04/2018: 19:39 - 19:40:pool[testing again]
 
 ##### 03/04/2018: 19:40 - 19:41:pool[another test]
+
+##### 03/04/2018: 19:22 - 19:48:pool[finish testing sandbox posting to test api]
