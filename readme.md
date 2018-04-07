@@ -57,3 +57,9 @@ Changelog:
 ##### 03/04/2018: 19:52 - 19:55:pool[migrate fix to start method to gitdeclare.rb and gdec cli]
 
 ##### 03/04/2018: 19:55 - 19:59:pool[create httpdec cli]
+
+##### 07/04/2018: 16:56 - 16:57:pool[test 1]
+
+##### 07/04/2018: 16:57 - 16:57:pool[test 2]
+
+##### 07/04/2018: 16:57 - 16:57:pool[test 3]

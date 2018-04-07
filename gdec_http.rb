@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
+require 'httparty'
 
 class GitDeclare
+    include HTTParty
     @@pushes = 0
     @@stage = 0
     @@changes = []
