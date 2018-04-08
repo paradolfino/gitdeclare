@@ -18,7 +18,8 @@ class GitDeclare
     @@branch = nil
     @@declare = nil
     @@uri = "http://localhost:3000/declarations"
-    @@cwd = Dir.pwd.split("/").last
+    @@cwd = nil
+    @@origin = nil
 
     def initialize; end
 
