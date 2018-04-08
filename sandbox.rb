@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 
 require 'httparty'
 
@@ -46,9 +47,7 @@ class GitDeclare
         open("#{Dir.pwd}/readme.md", 'a') do |file|
             file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
-
         GitDeclare.post("#{@@uri}/#{@@declare}/entries", body: {content: pool})
-        
         @@changes << pool
         if @@stage == 1
             GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary})
