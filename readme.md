@@ -67,3 +67,5 @@ Changelog:
 ##### 08/04/2018: 17:25 - 17:28:pool[migrate changes from sandbox to production]
 
 ##### 08/04/2018: 17:35 - 17:36:pool[testing 1]
+
+##### 08/04/2018: 17:37 - 17:38:pool[testing POST]
