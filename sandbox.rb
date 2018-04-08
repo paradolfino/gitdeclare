@@ -121,6 +121,7 @@ class GitDeclare
         
         @@time = GitDeclare.current_time
         @@cwd = Dir.pwd.split("/").last
+        @@origin = %x(git remote get-url --push origin)
         x = %x(git rev-parse --abbrev-ref HEAD)
         @@branch = x.strip
         puts "On #{@@branch} branch"
