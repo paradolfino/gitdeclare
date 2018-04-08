@@ -61,3 +61,5 @@ Changelog:
 ##### 07/04/2018: 16:57 - 16:57:pool[test 2]
 
 ##### 07/04/2018: 16:57 - 16:57:pool[test 3]
+
+##### 08/04/2018: 17:15 - 17:25:pool[implement working directory and git uri in post to declarations]
