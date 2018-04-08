@@ -117,6 +117,7 @@ class GitDeclare
     end
 
     def self.start
+        puts @@cwd
         @@time = GitDeclare.current_time
         x = %x(git rev-parse --abbrev-ref HEAD)
         @@branch = x.strip
