@@ -28,7 +28,15 @@ class GitDeclare
     end
 
     def self.execute(param)
-        puts param
+        stalker = %x{#{param}}
+        
+        if stalker.include? "nothing to commit" 
+            
+        elsif stalker.include? "insert"
+            puts @@color_green + stalker + @@color_default
+            puts "#{@@commits} changes saved"
+            @@commits += 1
+        end
     end
 
     def self.add_wait
