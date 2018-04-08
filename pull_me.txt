@@ -1,6 +1,1 @@
 
-[feat: httpdec now POSTs the directory name and the git url]
-### 08/04/2018[17:15 - 17:28]:
-* implement working directory and git uri in post to declarations
-* migrate changes from sandbox to production
-
