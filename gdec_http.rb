@@ -18,6 +18,8 @@ class GitDeclare
     @@branch = nil
     @@declare = nil
     @@uri = "http://localhost:3000/declarations"
+    @@cwd = nil
+    @@origin = nil
 
     def initialize; end
 
@@ -58,7 +60,7 @@ class GitDeclare
         GitDeclare.post("#{@@uri}/#{@@declare}/entries", body: {content: pool})
         @@changes << pool
         if @@stage == 1
-            GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary})
+            GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary, directory: @@cwd, git: @@origin})
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
@@ -124,16 +126,18 @@ class GitDeclare
     end
 
     def self.start
+        
         @@time = GitDeclare.current_time
-        x = %x(git rev-parse --abbrev-ref HEAD)
-        @@branch = x.strip
+        @@cwd = Dir.pwd.split("/").last
+        @@origin = %x(git remote get-url --push origin)
+        @@branch = %x(git rev-parse --abbrev-ref HEAD).strip
         puts "On #{@@branch} branch"
         if @@pushes > 0
             @@pushes += 1
         else
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
-            res = GitDeclare.post(@@uri, body: {content: "New Declaration"})
+            res = GitDeclare.post(@@uri, body: {content: "New Declaration", directory: "New", git: "New"})
             body = JSON.parse(res.body)
             @@declare = body["id"]
             

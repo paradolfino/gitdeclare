@@ -1,7 +1,5 @@
 
-[testing gdec_http with RR_project api]
-### 07/04/2018[16:56 - 16:57]:
-* test 1
-* test 2
-* test 3
+[tested POST]
+### 08/04/2018[17:37 - 17:38]:
+* testing POST
 
