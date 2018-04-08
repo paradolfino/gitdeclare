@@ -118,8 +118,9 @@ class GitDeclare
     end
 
     def self.start
-        puts @@cwd
+        
         @@time = GitDeclare.current_time
+        @@cwd = Dir.pwd.split("/").last
         x = %x(git rev-parse --abbrev-ref HEAD)
         @@branch = x.strip
         puts "On #{@@branch} branch"
