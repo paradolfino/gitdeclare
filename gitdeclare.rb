@@ -74,12 +74,14 @@ class GitDeclare
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "push"
-            puts "Summarize final changes:"
-            summary = gets.chomp
-            puts "What is your next goal?"
-            goal = gets.chomp
-            @@stage = 1
-            GitDeclare.atomic(summary, pool, goal)
+            if @@branch != "master"
+                puts "Summarize final changes:"
+                summary = gets.chomp
+                puts "What is your next goal?"
+                goal = gets.chomp
+                @@stage = 1
+                GitDeclare.atomic(summary, pool, goal)
+            end
             GitDeclare.execute "git push -u origin #{branch}"
         when "switch"
             GitDeclare.atomic(nil, pool)
