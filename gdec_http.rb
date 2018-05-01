@@ -54,12 +54,10 @@ class GitDeclare
         open("#{Dir.pwd}/changelog.txt", 'a') do |file|
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
-        open("#{Dir.pwd}/readme.md", 'a') do |file|
-            file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
-        end
+
         GitDeclare.post("#{@@uri}/#{@@declare}/entries", body: {content: pool})
         @@changes << pool
-        if @@stage == 1
+        if @@stage == 1 && @@branch != "master"
             GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary, directory: @@cwd, git: @@origin})
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
@@ -83,10 +81,14 @@ class GitDeclare
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "push"
-            puts "Summarize final changes:"
-            summary = gets.chomp
-            @@stage = 1
-            GitDeclare.atomic(summary, pool)
+            if @@branch != "master"
+                puts "Summarize final changes:"
+                summary = gets.chomp
+                puts "What is your next goal?"
+                goal = gets.chomp
+                @@stage = 1
+                GitDeclare.atomic(summary, pool, goal)
+            end
             GitDeclare.execute "git push -u origin #{branch}"
         when "switch"
             GitDeclare.atomic(nil, pool)
@@ -137,7 +139,7 @@ class GitDeclare
         else
             open('pull_me.txt', 'w') {|f| f.puts ""}
             @@pushes += 1
-            res = GitDeclare.post(@@uri, body: {content: "New Declaration", directory: "New", git: "New"})
+            res = GitDeclare.post(@@uri, body: {content: "Working on...", directory: "#{@@cwd}", git: "#"})
             body = JSON.parse(res.body)
             @@declare = body["id"]
             
