@@ -44,22 +44,20 @@ class GitDeclare
             GitDeclare.execute "git commit -m \" #{pool} \""
     end
 
-    def self.atomic(summary, pool)
+    def self.atomic(summary, pool, goal)
         open("#{Dir.pwd}/changelog.txt", 'a') do |file|
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
-        open("#{Dir.pwd}/readme.md", 'a') do |file|
-            file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
-        end
         
         @@changes << pool
-        if @@stage == 1
+        if @@stage == 1 && @@branch != "master"
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
                 file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
+                file.puts "What's next? #{goal}"
             end
         end
         GitDeclare.add_wait
@@ -78,8 +76,10 @@ class GitDeclare
         when "push"
             puts "Summarize final changes:"
             summary = gets.chomp
+            puts "What is your next goal?"
+            goal = gets.chomp
             @@stage = 1
-            GitDeclare.atomic(summary, pool)
+            GitDeclare.atomic(summary, pool, goal)
             GitDeclare.execute "git push -u origin #{branch}"
         when "switch"
             GitDeclare.atomic(nil, pool)
