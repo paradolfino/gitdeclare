@@ -65,6 +65,7 @@ class GitDeclare
                 file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
+                file.puts "What's Next? #{goal}"
             end
         end
         GitDeclare.add_wait
