@@ -44,7 +44,7 @@ class GitDeclare
             GitDeclare.execute "git commit -m \" #{pool} \""
     end
 
-    def self.atomic(summary, pool, goal)
+    def self.atomic(summary, pool, goal=nil)
         open("#{Dir.pwd}/changelog.txt", 'a') do |file|
             file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
         end
