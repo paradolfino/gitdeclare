@@ -145,7 +145,7 @@ class GitDeclare
             @@declare = body["id"]
             
         end
-        if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
+        if @@branch == nil then puts "What branch are you working on?"; @@branch = gets.chomp end
         
         GitDeclare.threader(@@branch)
     end
