@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'httparty'
 
 class GitDeclare
-    include HTTParty
     @@pushes = 0
     @@stage = 0
     @@changes = []
@@ -16,10 +14,6 @@ class GitDeclare
     @@time = nil
     @@pool = nil
     @@branch = nil
-    @@declare = nil
-    @@uri = "http://localhost:3000/declarations"
-    @@cwd = nil
-    @@origin = nil
 
     def initialize; end
 
@@ -28,7 +22,15 @@ class GitDeclare
     end
 
     def self.execute(param)
-        puts param
+        stalker = %x{#{param}}
+        
+        if stalker.include? "nothing to commit" 
+            
+        elsif stalker.include? "insert"
+            puts @@color_green + stalker + @@color_default
+            puts "#{@@commits} changes saved"
+            @@commits += 1
+        end
     end
 
     def self.add_wait
@@ -42,29 +44,23 @@ class GitDeclare
             GitDeclare.execute "git commit -m \" #{pool} \""
     end
 
-    def self.atomic(summary, pool)
-        open("#{Dir.pwd}/changelog.txt", 'a') do |file|
-            file.puts "#{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
-        end
-        open("#{Dir.pwd}/readme.md", 'a') do |file|
-            file.puts "\n##### #{@@date}: #{@@time} - #{GitDeclare.current_time}:pool[#{pool}]"
-        end
-        GitDeclare.post("#{@@uri}/#{@@declare}/entries", body: {content: pool})
+    def self.atomic(summary, pool, goal=nil)
         @@changes << pool
-        if @@stage == 1
-            GitDeclare.put("#{@@uri}/#{@@declare}", body: {content: summary, directory: @@cwd, git: @@origin})
+        if @@stage == 1  && @@branch != "master"
             @@changes.map! {|item| item = "* #{item.strip}"}
             open('pull_me.txt', 'a') do |file|
                 file.puts "[#{summary}]"
                 file.puts "### #{@@date}[#{@@starttime} - #{GitDeclare.current_time}]:"
                 file.puts @@changes
                 file.puts
+                file.puts "What's Next? #{goal}"
             end
         end
         GitDeclare.add_wait
         GitDeclare.execute "git commit -m \"#{pool}\""
         
     end
+
 
     def self.exit(exit_type, pool, branch)
         case exit_type
@@ -75,10 +71,14 @@ class GitDeclare
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "push"
-            puts "Summarize final changes:"
-            summary = gets.chomp
-            @@stage = 1
-            GitDeclare.atomic(summary, pool)
+            if @@branch != "master"
+                puts "Summarize final changes:"
+                summary = gets.chomp
+                puts "What is your next goal?"
+                goal = gets.chomp
+                @@stage = 1
+                GitDeclare.atomic(summary, pool, goal)
+            end
             GitDeclare.execute "git push -u origin #{branch}"
         when "switch"
             GitDeclare.atomic(nil, pool)
@@ -118,23 +118,12 @@ class GitDeclare
     end
 
     def self.start
-        
         @@time = GitDeclare.current_time
-        @@cwd = Dir.pwd.split("/").last
-        @@origin = %x(git remote get-url --push origin)
-        @@branch = %x(git rev-parse --abbrev-ref HEAD).strip
+        x = %x(git rev-parse --abbrev-ref HEAD)
+        @@branch = x.strip
         puts "On #{@@branch} branch"
-        if @@pushes > 0
-            @@pushes += 1
-        else
-            open('pull_me.txt', 'w') {|f| f.puts ""}
-            @@pushes += 1
-            res = GitDeclare.post(@@uri, body: {content: "New Declaration", directory: "New", git: "New"})
-            body = JSON.parse(res.body)
-            @@declare = body["id"]
-            
-        end
-        if @@branch == "master" then puts "What branch are you working on?"; @@branch = gets.chomp end
+        @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
+        if @@branch == nil then puts "What branch are you working on?"; @@branch = gets.chomp end
         
         GitDeclare.threader(@@branch)
     end
