@@ -64,7 +64,8 @@ class GitDeclare
     def serialize
       table = ("a".."z").to_a
       serial = []
-      6.times { }
+      6.times { serial << table[rand(table.length)] }
+      serial.join("")
     end
 
 
