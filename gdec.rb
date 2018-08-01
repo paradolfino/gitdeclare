@@ -63,6 +63,8 @@ class GitDeclare
 
     def serialize
       table = ("a".."z").to_a
+      serial = []
+      6.times { }
     end
 
 
