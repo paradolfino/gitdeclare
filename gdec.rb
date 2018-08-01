@@ -41,7 +41,7 @@ class GitDeclare
 
     def self.commit_loop(pool)
             GitDeclare.add_wait
-            GitDeclare.execute "git commit -m \" #{pool} \""
+            GitDeclare.execute "git commit -m \" #{pool}:#{GitDeclare.serialize} \""
     end
 
     def self.atomic(summary, pool, goal=nil)
@@ -57,11 +57,11 @@ class GitDeclare
             end
         end
         GitDeclare.add_wait
-        GitDeclare.execute "git commit -m \"#{pool}:#{serialize}\""
+        GitDeclare.execute "git commit -m \"update pull request header #{GitDeclare.serialize}\""
         
     end
 
-    def serialize
+    def self.serialize
       table = ("a".."z").to_a
       serial = []
       6.times { serial << table[rand(table.length)] }
