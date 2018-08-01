@@ -41,7 +41,7 @@ class GitDeclare
 
     def self.commit_loop(pool)
             GitDeclare.add_wait
-            GitDeclare.execute "git commit -m \" #{pool}:#{GitDeclare.serialize} \""
+            GitDeclare.execute "git commit -m \" #{pool} : #{GitDeclare.serialize} \""
     end
 
     def self.atomic(summary, pool, goal=nil)
@@ -57,7 +57,7 @@ class GitDeclare
             end
         end
         GitDeclare.add_wait
-        GitDeclare.execute "git commit -m \"update pull request header #{GitDeclare.serialize}\""
+        GitDeclare.execute "git commit -m \"update pull request header : #{GitDeclare.serialize}\""
         
     end
 
