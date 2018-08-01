@@ -61,6 +61,10 @@ class GitDeclare
         
     end
 
+    def serialize
+      table = ("a".."z").to_a
+    end
+
 
     def self.exit(exit_type, pool, branch)
         case exit_type
